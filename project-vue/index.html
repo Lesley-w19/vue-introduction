@@ -1,0 +1,62 @@
+<!-- The example below uses the global build of Vue where all APIs are exposed under the global Vue variable. -->
+
+<!-- ÷Using the gloabal build -->
+<!-- <script src="https://unpkg.com/vue@3"></script>
+
+<div id="app">{{ message }}</div>
+
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        message: 'Hello Vue!'
+      }
+    }
+  }).mount('#app')
+</script> -->
+
+<!-- Method 2 -->
+<!-- You can add entries for other dependencies to the import map - just make sure they point to the ES modules version of the library you intend to use. -->
+<!-- <script type="importmap">
+   
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
+<div id="app">{{ message}}</div>
+<script type="module">
+  import { createApp } from "vue";
+
+  createApp({
+    data() {
+      return {
+        message: "Hello Vue!",
+      };
+    },
+  }).mount("#app");
+</script> -->
+
+<!-- method 3 -->
+<script type="importmap">
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
+<div id="app">
+  {{message}}
+   
+
+</div>
+<script type="module">
+  import { createApp } from "vue";
+
+  import MyComponent from "./component.js";
+
+  createApp(MyComponent).mount("#app");
+</script>
