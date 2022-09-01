@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+    <!-- <router-link to="/">Home</router-link>
+    <router-link to="/contact">Contact</router-link>
+    <router-view /> -->
+
+    <div>{{ products }}</div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import axios from "axios";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data() {
+    return {
+      products: [],
+      url: "https://fakestoreapi.com/products",
+    };
+  },
+  //using the created hook
+  // async created() {
+  //   try {
+  //     const response = await axios.get(this.url);
+  //     this.products = response.data;
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
+  //using the mounted hook
+  async mounted() {
+    try {
+      const response = await axios.get(this.url);
+      this.products = response.data;
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style scoped></style>
